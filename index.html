@@ -97,6 +97,7 @@
             padding: 8rem 2rem;
             position: relative;
             overflow: hidden;
+            min-height: 400px; /* Ensure space for button */
         }
 
         #hero h1 {
@@ -110,6 +111,30 @@
             font-size: 1.8rem;
             position: relative;
             z-index: 1;
+        }
+
+        #hero a.resume-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: #E100FF; /* Purple-pink scheme */
+            border: 2px solid #E100FF;
+            color: #F5F5F5;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+            max-width: 200px;
+            position: relative;
+            z-index: 2; /* Above canvas */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #hero a.resume-btn:hover {
+            background: #F5F5F5;
+            color: #E100FF;
         }
 
         @keyframes slideIn {
@@ -194,12 +219,14 @@
             transform: translateY(-20px);
         }
 
-        .portfolio-item video, .portfolio-item img {
+        .portfolio-item iframe {
             width: 100%;
             max-width: 650px;
+            height: 400px;
             border-radius: 5px;
             display: block;
             margin: 0 auto;
+            border: none;
         }
 
         .portfolio-item p {
@@ -208,9 +235,9 @@
             font-size: 1.4rem;
         }
 
-        .portfolio-item a.see-all-btn {
+        a.see-all-btn {
             display: block;
-            margin: 1rem auto;
+            margin: 2rem auto;
             padding: 1rem 2rem;
             background: #2A2A2A;
             border: 2px solid #E100FF;
@@ -223,7 +250,7 @@
             max-width: 200px;
         }
 
-        .portfolio-item a.see-all-btn:hover {
+        a.see-all-btn:hover {
             background: #E100FF;
             color: #F5F5F5;
         }
@@ -272,6 +299,12 @@
             #hero p { font-size: 1.4rem; }
             #hero, #skills, #portfolio, #contact { padding: 4rem 1rem; }
 
+            #hero a.resume-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                max-width: 180px;
+            }
+
             .sidebar {
                 width: 250px;
             }
@@ -285,11 +318,6 @@
                 font-size: 1rem;
             }
 
-            /* Skills: Show only 6 */
-            .skill:nth-child(n+7) {
-                display: none;
-            }
-
             .portfolio-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -299,15 +327,16 @@
                 padding: 1rem;
             }
 
-            .portfolio-item video, .portfolio-item img {
+            .portfolio-item iframe {
                 max-width: 300px;
+                height: 180px;
             }
 
             .portfolio-item p {
                 font-size: 1rem;
             }
 
-            .portfolio-item a.see-all-btn {
+            a.see-all-btn {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.9rem;
                 max-width: 180px;
@@ -331,6 +360,7 @@
         <canvas id="orbits" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
         <h1>Santosh Thakur</h1>
         <p>Motion Graphics Designer</p>
+        <a href="https://drive.google.com/file/d/1obOUR3T_k2FDwJOog7_7wrdxjH_ifijl/view?usp=drive_link" class="resume-btn">See Resume</a>
     </section>
 
     <section id="skills">
@@ -347,27 +377,19 @@
         <h2>Portfolio</h2>
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <video controls preload="metadata" poster="https://images.pexels.com/photos/1115824/pexels-photo-1115824.jpeg">
-                    <source src="https://drive.google.com/uc?export=download&id=1-sroymXOUPNq-jrNaEqpvVjJ6pVRO_Iy" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://drive.google.com/file/d/1IQjsr0FajR7BFLRvbEBboVu9FS3V3zVs/preview" allow="autoplay" allowfullscreen></iframe>
                 <p>Project 1: Dynamic Motion Graphics</p>
-                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
             </div>
             <div class="portfolio-item">
-                <video controls preload="metadata" poster="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg">
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://drive.google.com/file/d/16eFS7kgSq6hteGH0bDfjTVEeHmVaThz8/preview" allow="autoplay" allowfullscreen></iframe>
                 <p>Project 2: Animated Branding</p>
-                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/650x400" alt="Project 3">
+                <iframe src="https://drive.google.com/file/d/19d-SHiBHMqcHBR0F1hh3FN9mLXfV2lrj/preview" allow="autoplay" allowfullscreen></iframe>
                 <p>Project 3: Mixed Media Animation</p>
-                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
             </div>
         </div>
+        <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
     </section>
 
     <section id="contact">
