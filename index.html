@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santosh Thakur - Minimalist 3D Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #1F1F1F;
+            color: #F5F5F5;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            color: #F5F5F5;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .sidebar-toggle:hover {
+            color: #E100FF;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background: #1F1F1F;
+            border-right: 1px solid #E100FF;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .close-btn {
+            background: none;
+            border: none;
+            color: #F5F5F5;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar .close-btn:hover {
+            color: #E100FF;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar ul li a {
+            color: #F5F5F5;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            color: #E100FF;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 1s ease-out;
+        }
+
+        #hero p {
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        #skills h2, #portfolio h2, #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #E100FF;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill {
+            background: #2A2A2A;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            color: #E100FF;
+            font-weight: bold;
+            transition: transform 0.3s;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .skill:nth-child(2n) { animation-delay: 0.2s; }
+        .skill:nth-child(3n) { animation-delay: 0.4s; }
+
+        .skill:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            background: #2A2A2A;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-20px);
+        }
+
+        .portfolio-item video, .portfolio-item img {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .portfolio-item p {
+            margin-top: 0.5rem;
+            color: #F5F5F5;
+            font-size: 1.4rem;
+        }
+
+        .portfolio-item a.see-all-btn {
+            display: block;
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+            background: #2A2A2A;
+            border: 2px solid #E100FF;
+            color: #E100FF;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .portfolio-item a.see-all-btn:hover {
+            background: #E100FF;
+            color: #F5F5F5;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        #contact p {
+            margin-bottom: 1rem;
+        }
+
+        #contact a {
+            color: #E100FF;
+            text-decoration: none;
+        }
+
+        #contact a:hover {
+            color: #F5F5F5;
+        }
+
+        /* Footer */
+        footer {
+            background: #1F1F1F;
+            padding: 1.5rem;
+            text-align: center;
+            color: #F5F5F5;
+            border-top: 1px solid #E100FF;
+        }
+
+        footer a {
+            color: #E100FF;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #F5F5F5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 2.5rem; }
+            #hero p { font-size: 1.4rem; }
+            #hero, #skills, #portfolio, #contact { padding: 4rem 1rem; }
+
+            .sidebar {
+                width: 250px;
+            }
+
+            .sidebar ul {
+                padding: 2rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .sidebar ul li a {
+                font-size: 1rem;
+            }
+
+            /* Skills: Show only 6 */
+            .skill:nth-child(n+7) {
+                display: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .portfolio-item {
+                padding: 1rem;
+            }
+
+            .portfolio-item video, .portfolio-item img {
+                max-width: 300px;
+            }
+
+            .portfolio-item p {
+                font-size: 1rem;
+            }
+
+            .portfolio-item a.see-all-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                max-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="sidebar-toggle">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn">✖</button>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <section id="hero">
+        <canvas id="orbits" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+        <h1>Santosh Thakur</h1>
+        <p>Motion Graphics Designer</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <span class="skill">Adobe After Effects</span>
+            <span class="skill">Cinema 4D</span>
+            <span class="skill">Adobe Premiere Pro</span>
+            <span class="skill">Blender</span>
+            <span class="skill">Typography Animation</span>
+            <span class="skill">Visual Effects</span>
+            <span class="skill">3D Modeling</span>
+            <span class="skill">UI Animation</span>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <video controls preload="metadata" poster="https://images.pexels.com/photos/1115824/pexels-photo-1115824.jpeg">
+                    <source src="https://drive.google.com/uc?export=download&id=1-sroymXOUPNq-jrNaEqpvVjJ6pVRO_Iy" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Project 1: Dynamic Motion Graphics</p>
+                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
+            </div>
+            <div class="portfolio-item">
+                <video controls preload="metadata" poster="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg">
+                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Project 2: Animated Branding</p>
+                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/650x400" alt="Project 3">
+                <p>Project 3: Mixed Media Animation</p>
+                <a href="https://drive.google.com/drive/folders/1-6bLRkTXcVDGHzYkqt4kl_ovk2LyeECT" class="see-all-btn">See All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:santosh@example.com">santosh@example.com</a></p>
+        <p>Phone: +123-456-7890</p>
+    </section>
+
+    <footer>
+        <p>© 2025 Santosh Thakur. All rights reserved.</p>
+        <a href="#">LinkedIn</a>
+        <a href="#">Behance</a>
+        <a href="#">Instagram</a>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sidebar Toggle
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('#sidebar');
+        const closeBtn = document.querySelector('.close-btn');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+
+        // Orbital Light Trails Animation with 4 Orbs
+        const canvas = document.getElementById('orbits');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const orbs = [
+            { x: canvas.width / 2, y: canvas.height / 2, radius: 5, angle: 0, speed: 0.025, orbit: 80, color: '#7F00FF' },
+            { x: canvas.width / 2, y: canvas.height / 2, radius: 5, angle: Math.PI / 2, speed: 0.02, orbit: 120, color: '#E100FF' },
+            { x: canvas.width / 2, y: canvas.height / 2, radius: 5, angle: Math.PI, speed: 0.015, orbit: 160, color: '#A100FF' },
+            { x: canvas.width / 2, y: canvas.height / 2, radius: 5, angle: 3 * Math.PI / 2, speed: 0.01, orbit: 200, color: '#FF66FF' }
+        ];
+        const trails = [];
+
+        function animate() {
+            ctx.fillStyle = 'rgba(31, 31, 31, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            orbs.forEach(orb => {
+                orb.angle += orb.speed;
+                const x = canvas.width / 2 + Math.cos(orb.angle) * orb.orbit;
+                const y = canvas.height / 2 + Math.sin(orb.angle) * orb.orbit * 0.5;
+                trails.push({ x, y, life: 50, color: orb.color });
+                ctx.beginPath();
+                ctx.arc(x, y, orb.radius, 0, Math.PI * 2);
+                ctx.fillStyle = orb.color;
+                ctx.fill();
+            });
+            trails.forEach((trail, i) => {
+                trail.life--;
+                if (trail.life <= 0) trails.splice(i, 1);
+                ctx.fillStyle = `rgba(${trail.color === '#7F00FF' ? '127, 0, 255' : trail.color === '#E100FF' ? '225, 0, 255' : trail.color === '#A100FF' ? '161, 0, 255' : '255, 102, 255'}, ${trail.life / 50})`;
+                ctx.fillRect(trail.x, trail.y, 2, 2);
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
